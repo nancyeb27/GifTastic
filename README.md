@@ -13,7 +13,7 @@ We chose animals for our theme, but you can make a list to your own liking.
 Your app should take the topics in this array and create buttons in your HTML.
 
 
-Try using a loop that appends a button for each string in the array.
+Try using a loop that appends a button for each string in the array.()
 
 
 When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page.
