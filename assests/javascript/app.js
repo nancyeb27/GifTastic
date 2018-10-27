@@ -4,24 +4,23 @@ $(document).ready(function () {
         "Nosies Off", "Lion King", "The King and I", "Aladdin", "Oklahoma", "My Fair Lady", "Death of a Salesman"];
 
     function renderButtons() {
-         $("#broadway-button").empty();
+        $("#broadway-button").empty();
 
         for (var i = 0; i < topics.length; i++) {
             var buttons = $("<button>");
             buttons.attr("class", "showgif");
-            buttons.attr("show-button", topics[i]);
+            buttons.attr('show-button', topics[i]);
             buttons.text(topics[i]);
-            $("broadway-button").append(buttons);
+            $("#broadway-button").append(buttons);
         }
     }
 
     $(document).on("click", ".showgif", function () {
         console.log(document);
-        
 
-        var x = $(this).attr("show-button");
-        console.log(x);
+    //  function displayMovieInfo()
 
+        var x = $(this).attr('show-button');
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=jjjBHEPaQomZZDjCcCZcKkXRbpGmeS89&limit=10";
         console.log(queryURL);
 
@@ -75,19 +74,26 @@ $(document).ready(function () {
                     // This line grabs the input from the textbox
                     var topic = $("#topic-input").val().trim();
                     // Adding movie from the textbox to our array
-                    topics.push(topic);
-                    // Clear the form field for next addition
-                    $("form").trigger("reset")
+                    topics.push(x);
+                    console.log(x);
+
+                    renderButtons();
+
+                    // / Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
+                    $(document).on("click", ".showgif", displayMovieInfo);
+
+
                     // Calling renderButtons which handles the processing of movie array
                     renderButtons();
                 })
-            
-            }
-        
-        })   
 
-             })
-     
+            }
+
         })
 
-     
+    })
+    renderButtons();
+
+})
+
+
