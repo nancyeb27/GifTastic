@@ -3,18 +3,21 @@ $(document).ready(function () {
     var topics = ["Wicked", "Dear Evan Hansen", "Hamilton", "Kinky Boots", "School of Rock",
         "Nosies Off", "Lion King", "The King and I", "Aladdin", "Oklahoma", "My Fair Lady", "Death of a Salesman"];
 
+    function renderButtons() {
+         $("#broadway-button").empty();
 
-    for (var i = 0; i < topics.length; i++) {
-        var buttons = $("<button>");
-        buttons.attr("class", "showgif");
-        buttons.attr("show-button", topics[i]);
-        buttons.text(topics[i]);
-        $("#broadway-button").append(buttons);
-
+        for (var i = 0; i < topics.length; i++) {
+            var buttons = $("<button>");
+            buttons.attr("class", "showgif");
+            buttons.attr("show-button", topics[i]);
+            buttons.text(topics[i]);
+            $("broadway-button").append(buttons);
+        }
     }
 
     $(document).on("click", ".showgif", function () {
-        console.log("document");
+        console.log(document);
+        
 
         var x = $(this).attr("show-button");
         console.log(x);
@@ -22,25 +25,22 @@ $(document).ready(function () {
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=jjjBHEPaQomZZDjCcCZcKkXRbpGmeS89&limit=10";
         console.log(queryURL);
 
-
         $.ajax({
             url: queryURL,
             method: "GET"
         }).done(function (response) {
 
-            // storing the image from the retruned object var
             var results = response.data;
 
             for (var i = 0; i < results.length; i++) {
 
                 var gifhy = $("<img>");
-
-
                 gifhy.attr("src", results[i].images.fixed_height_small_still.url);
                 gifhy.attr("data-still", results[i].images.original_still.url);
                 gifhy.attr("data-animate", results[i].images.original.url);
                 gifhy.attr("data-state", "still");
                 gifhy.attr("class", "gif");
+
 
 
                 $(".gif").on("click", function () {
@@ -55,17 +55,12 @@ $(document).ready(function () {
                         $(this).attr("src", $(this).attr("data-still"));
                         $(this).attr("data-state", "still");
                     }
-
-
                 })
 
-
-                $("#broadway-gifs").append(gifhy);
+                $("#broadway-gifs").prepend(gifhy);
 
                 var gifDiv = $("<div>");
-
                 var rating = results[i].rating;
-
                 var p = $("<p>").text("Rating: " + rating);
 
                 gifDiv.prepend(p);
@@ -74,49 +69,25 @@ $(document).ready(function () {
                 $("#broadway-gifs").prepend(gifDiv);
 
 
-                // This function handles events where one button is clicked
+                // This function handles events where a Topic button is clicked
                 $("#add-topic").on("click", function (event) {
                     event.preventDefault();
-
                     // This line grabs the input from the textbox
-                    var newplay = $("#topic-input").val().trim();
-                    console.log(newplay);
-                 
-
-                    // Adding the movie from the textbox to our array
-                    newplay.push(topics);
-                    console.log(topics);
-
-                    //     // Calling renderButtons which handles the processing of our movie array
-                    // gifhy();
-                    //   });
-
-                    //   // Function for displaying the movie info
-                    //   // Using $(document).on instead of $(".movie").on to add event listeners to dynamically generated elements
-                    //   $(document).on("click", "x", topics);
-
-                    //   // Calling the renderButtons function to display the initial buttons
-                    // show-button();
-
+                    var topic = $("#topic-input").val().trim();
+                    // Adding movie from the textbox to our array
+                    topics.push(topic);
+                    // Clear the form field for next addition
+                    $("form").trigger("reset")
+                    // Calling renderButtons which handles the processing of movie array
+                    renderButtons();
                 })
             
             }
-
         
+        })   
 
-    })
-})
-   
-})
-    
+             })
+     
+        })
 
-
-
-
-
-
-
-
-
-
-
+     
