@@ -62,6 +62,7 @@ $(document).ready(function () {
                 var gifDiv = $("<div>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
+                
  
                 gifDiv.prepend(p);
                 gifDiv.prepend(gifhy);
@@ -81,7 +82,7 @@ $(document).ready(function () {
         topics.push(newShow);
         console.log(topics);
 
-       renderButtons();
+    //    renderButtons();
        
    });
 
