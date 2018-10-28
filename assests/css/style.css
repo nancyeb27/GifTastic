@@ -1,0 +1,51 @@
+body{
+    background-color: rgb(114, 114, 223);
+    color: silver;
+    text-align: center;
+    font-family: cursive;
+    font-size: 40 px;
+    
+}
+
+#broadway-button {
+    margin:3px;
+    background-color : #e70c0c;
+    border-color:white;
+
+}
+
+.gif {
+    margin-top: 50px;
+}
+
+.showgif {
+    margin:3px;
+    background-color: rgb(241, 208, 195);
+   
+}
+
+Label {
+
+    color:black;
+    font-size: 20 px;
+}
+
+#topic-input {
+    background-color: rgb(241, 208, 195);
+}
+
+#add-topic {
+    background-color: #e70c0c;
+    border-color: white;
+}
+
+#gif-form {
+    text-align: left;
+    color: white;
+
+}
+
+p {
+    color: white;
+    text-size: 15 px;
+}
