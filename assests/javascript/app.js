@@ -14,7 +14,18 @@ $(document).ready(function () {
             $("#broadway-button").append(buttons);
         }
     }
+    $("#add-topic").on("click", function (event) {
+         event.preventDefault();
+        // This line grabs the input from the textbox
+        var newShow = $("#topic-input").val().trim();
 
+        // Adding movie from the textbox to our array
+        topics.push(newShow);
+        console.log("topics", topics);
+
+        renderButtons();
+
+    });
     $(document).on("click", ".showgif", function () {
         console.log(document);
 
@@ -43,19 +54,7 @@ $(document).ready(function () {
 
 
 
-                $(".gif").on("click", function () {
-                    var state = $(this).attr("data-state");
-                    var animateImage = $(this).attr("data-animate");
-                    var stillImage = $(this).attr("data-still");
 
-                    if (state === "still") {
-                        $(this).attr("src", $(this).attr("data-animate"));
-                        $(this).attr("data-state", "animate");
-                    } else {
-                        $(this).attr("src", $(this).attr("data-still"));
-                        $(this).attr("data-state", "still");
-                    }
-                })
 
                 $("#broadway-gifs").prepend(gifhy);
 
@@ -72,29 +71,28 @@ $(document).ready(function () {
 
                 // This function handles events where a Topic button is clicked
 
-               
-
-
             }
+            $(".gif").on("click", function () {
+                var state = $(this).attr("data-state");
+                var animateImage = $(this).attr("data-animate");
+                var stillImage = $(this).attr("data-still");
 
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            })
         })
 
     })
-    $("#add-topic").on("click", function (event) {
-        // alert("Hi");
-        event.preventDefault();
-        // This line grabs the input from the textbox
-        var newShow = $("#topic-input").val().trim();
 
-        // Adding movie from the textbox to our array
-        topics.push(newShow);
-        console.log("topics", topics);
 
-        renderButtons();
-
-    });
 
     renderButtons();
+
 })
 
 

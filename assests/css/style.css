@@ -16,7 +16,16 @@ body{
 
 .gif {
     margin-top: 50px;
+    width: 200px;
+    height: 150px;
+    image-rendering: auto;
+    
+    
 }
+
+ #img {
+    display: inline-block;
+} 
 
 .showgif {
     margin:3px;
@@ -47,5 +56,5 @@ Label {
 
 p {
     color: white;
-    text-size: 15 px;
+    font-size: 15 px;
 }
